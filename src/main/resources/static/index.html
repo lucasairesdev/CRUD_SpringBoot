@@ -34,6 +34,7 @@
 	<button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
 	<button type="button" class="btn btn-secondary"onclick="document.getElementById('formCadastroUser').reset();">Novo</button>
 	<button type="button" class="btn btn-danger" data-bs-toggle="modal"data-bs-target="#modalPesquisaUser">Pesquisar</button>
+	<button type="button" class="btn btn-warning" onclick="botaoDeletarNaTela()">Deletar</button>
 
 
 	<div class="modal fade" id="modalPesquisaUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,6 +86,12 @@
 
 	<script type="text/javascript">
 		
+		function botaoDeletarNaTela(){
+			var id = $('#id').val();
+			deleteUser(id);
+			
+			document.getElementById('formCadastroUser').reset();
+		}
 		function deleteUser(id){
 			if(confirm('Deseja realmente deletar?')){
 			
