@@ -59,6 +59,7 @@
 								<th scope="col">ID</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Editar</th>
+								<th scope="col">Excluir</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -86,12 +87,22 @@
 
 	<script type="text/javascript">
 		
+		
 		function botaoDeletarNaTela(){
 			var id = $('#id').val();
 			deleteUser(id);
 			
 			document.getElementById('formCadastroUser').reset();
 		}
+		
+		
+		function botaoDeletarNoModal(id){
+			deleteUser(id);
+			
+			document.getElementById('formCadastroUser').reset();
+		}
+		
+		
 		function deleteUser(id){
 			if(confirm('Deseja realmente deletar?')){
 			
@@ -112,6 +123,10 @@
 			
 		  }
 		}
+		
+		
+		
+		
 		function pesquisarUser(){
 			var nome = $('#nameBusca').val();
 			
@@ -126,7 +141,7 @@
 					$('#tabelaResultados > tbody > tr').remove();
 					
 					for(var i=0; i< response.length; i++){
-						$('#tabelaResultados > tbody').append('<tr><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td><button type="button" onclick="colocarEmEdicao('+response[i].id+')" class="btn btn-info">Ver</button></td></tr>');
+						$('#tabelaResultados > tbody').append('<tr id="'+response[i].id+'"><td>'+response[i].id+'</td><td>'+response[i].nome+'</td><td><button type="button" onclick="colocarEmEdicao('+response[i].id+')" class="btn btn-info">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="botaoDeletarNoModal('+response[i].id+')">Excluir</button></td></tr>');
 					}
 				}
 			}).fail(function (xhr, status, errorThrown) {
