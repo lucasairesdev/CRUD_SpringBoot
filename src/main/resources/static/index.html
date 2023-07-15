@@ -85,6 +85,26 @@
 
 	<script type="text/javascript">
 		
+		function deleteUser(id){
+			if(confirm('Deseja realmente deletar?')){
+			
+			
+				$.ajax({
+					method: "DELETE",
+					url: "delete",
+					data: "iduser=" + id,
+					success: function (response) {
+						
+						$('#'+ id).remove();
+						
+					alert(response);
+				}
+			}).fail(function (xhr, status, errorThrown) {
+				alert("Erro ao apagar usuário por id" + xhr.responseText);
+			});
+			
+		  }
+		}
 		function pesquisarUser(){
 			var nome = $('#nameBusca').val();
 			
