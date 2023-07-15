@@ -103,14 +103,18 @@
 		
 		function botaoDeletarNaTela(){
 			var id = $('#id').val();
-			deleteUser(id);
+			
+			if(id != null && id.trim() != ''){
+				deleteUser(id);
+			}
 			
 			document.getElementById('formCadastroUser').reset();
 		}
 		
 		
 		function botaoDeletarNoModal(id){
-			deleteUser(id);
+				deleteUser(id);
+			
 			
 			document.getElementById('formCadastroUser').reset();
 		}
@@ -199,7 +203,17 @@
 			var nome = $("#nome").val();
 			var idade = $("#idade").val();
 
-
+			if(nome == null || nome != null && nome.trim() == ''){
+				$('#nome').focus();
+				alert('Informe o nome');
+				return;
+			}
+			
+			if(idade == null || idade != null && idade.trim() == ''){
+				$('#idade').focus();
+				alert('Informe a idade');
+				return;
+			}
 
 			$.ajax({
 				method: "POST",
